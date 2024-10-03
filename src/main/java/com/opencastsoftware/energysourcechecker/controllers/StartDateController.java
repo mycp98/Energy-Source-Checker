@@ -19,7 +19,9 @@ public class StartDateController {
     private StartDateService startDateService;
 
     @PostMapping("/startDate")
-    public ResponseEntity<Void> startDate(@RequestBody LocalDate startDate) {
+    public ResponseEntity<Void> startDate(@RequestBody String startDate) {
+        log.info("startDate is " + startDate);
+
         startDateService.createStartDate(startDate);
         return ResponseEntity.ok().build();
     }
