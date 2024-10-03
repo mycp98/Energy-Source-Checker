@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.Assertions;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -35,13 +36,26 @@ public class PostcodeServiceTest {
     }
 
     @Test
+    public void testCreatePostcodeThrowsExceptionForInvalidPostcode() {
+        String invalidPostcode = "ABCD EFG";
+
+        PostcodeException exception = assertThrows(PostcodeException.class, () -> {
+            postcodeService.createPostcode(invalidPostcode);
+        });
+
+        assertThat(exception.getMessage()).isEqualTo("invalid postcode");
+    }
+
+    @Test
     public void testValidPostcode(){
-        postcodeService.validatePostcode("AB12 9DE");
+        boolean result = postcodeService.validatePostcode("AB12 9DE");
+        assertThat(result).isTrue();
     }
 
     @Test
     public void testInvalidPostcode(){
-        assertThrows(PostcodeException.class, () -> postcodeService.validatePostcode("83674444"));
+        boolean result = postcodeService.validatePostcode("123456");
+        assertThat(result).isFalse();
     }
 
 }

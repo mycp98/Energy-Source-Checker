@@ -21,10 +21,8 @@ public class PostcodeController {
 
         log.info("Postcode entered is " + postcode);
 
-        postcodeService.validatePostcode(postcode);
         postcodeService.createPostcode(postcode);
 
         return ResponseEntity.ok().build();
-
     }
 }

@@ -18,13 +18,15 @@ public class PostcodeService {
 
     String regex = "^[a-zA-Z]{1,2}\\d[a-zA-Z\\d]?\\s*\\d[a-zA-Z]{2}$";
 
-    public void validatePostcode(String postcode) throws PostcodeException{
-        if (!postcode.matches(regex)) {
-            throw new PostcodeException("Invalid postcode format");
-        }
+    boolean validatePostcode(String postcode) {
+        return postcode.matches(regex);
     }
 
-    public UserAnswers createPostcode(String postcode) {
+    public UserAnswers createPostcode(String postcode) throws PostcodeException {
+
+        if (!validatePostcode(postcode)) {
+            throw new PostcodeException("invalid postcode");
+        }
 
         UserAnswers userAnswers = UserAnswers.builder().postcode(postcode).build();
         return userAnswerRepository.save(userAnswers);
