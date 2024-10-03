@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+
 @SpringBootTest
 public class UserAnswerRepositoryIntegrationTest {
 
@@ -13,7 +15,7 @@ public class UserAnswerRepositoryIntegrationTest {
 
     @Test
     public void testCreateUserAnswers(){
-        UserAnswers initial = new UserAnswers(1L, "NE12 9PG");
+        UserAnswers initial = new UserAnswers(1L, "NE12 9PG", LocalDate.now());
         UserAnswers result = userAnswerRepository.save(initial);
         assert initial.equals(result);
     }

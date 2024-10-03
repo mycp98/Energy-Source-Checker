@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +23,7 @@ public class UserAnswers {
     private Long id;
 
     private String postcode;
+
+    private LocalDate startDate;
 
 }

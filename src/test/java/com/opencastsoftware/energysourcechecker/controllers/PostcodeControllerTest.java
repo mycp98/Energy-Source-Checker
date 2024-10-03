@@ -23,7 +23,7 @@ class PostcodeControllerTest {
     private PostcodeController postcodeController;
 
     @Test
-    public void testPostPostcode(){
+    public void testPostPostcode() throws Exception{
 
         UserAnswers user = UserAnswers.builder().postcode("AB12 CDE").build();
 
