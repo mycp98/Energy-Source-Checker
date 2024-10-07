@@ -26,4 +26,6 @@ public class UserAnswers {
 
     private LocalDate startDate;
 
+    private LocalDate endDate;
+
 }

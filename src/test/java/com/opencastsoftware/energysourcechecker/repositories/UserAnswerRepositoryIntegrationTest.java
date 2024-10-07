@@ -15,7 +15,7 @@ public class UserAnswerRepositoryIntegrationTest {
 
     @Test
     public void testCreateUserAnswers(){
-        UserAnswers initial = new UserAnswers(1L, "NE12 9PG", LocalDate.now());
+        UserAnswers initial = new UserAnswers(1L, "NE12 9PG", LocalDate.now(), LocalDate.now());
         UserAnswers result = userAnswerRepository.save(initial);
         assert initial.equals(result);
     }

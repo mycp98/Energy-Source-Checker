@@ -37,19 +37,18 @@ public class StartDateControllerTest {
     @MockBean
     private StartDateService startDateService;
 
-//    @Test
-//    public void testPostStartDate()  {
-//
-//        LocalDate startDate = LocalDate.now();
-//
-//        UserAnswers user = UserAnswers.builder().startDate(startDate).build();
-//
-//        when(startDateService.createStartDate(eq(startDate))).thenReturn(user);
-//
-//        ResponseEntity<Void> response = startDateController.startDate(startDate);
-//        assert response.getStatusCode().is2xxSuccessful();
-//        verify(startDateService).createStartDate(eq(startDate));
-//    }
+    @Test
+    public void testPostStartDate()  throws Exception {
+
+        LocalDate startDate = LocalDate.now().minusDays(10);
+
+        UserAnswers user = UserAnswers.builder().startDate(startDate).build();
+
+        when(startDateService.createStartDate(eq(startDate.toString()))).thenReturn(user);
+
+        mockMvc.perform(post("/startDate").content(startDate.toString()).contentType(MediaType.TEXT_PLAIN)
+        ).andExpect(status().isOk());
+    }
 
     @Test
     public void testInvalidPostStartDate() throws Exception {
