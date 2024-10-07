@@ -1,8 +1,8 @@
 package com.opencastsoftware.energysourcechecker.controllers;
 
-import com.opencastsoftware.energysourcechecker.exceptions.PostcodeException;
 import com.opencastsoftware.energysourcechecker.exceptions.StartDateException;
 import com.opencastsoftware.energysourcechecker.models.UserAnswers;
+import com.opencastsoftware.energysourcechecker.repositories.UserAnswerRepository;
 import com.opencastsoftware.energysourcechecker.services.StartDateService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,13 +12,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -35,6 +36,9 @@ public class StartDateControllerTest {
     MockMvc mockMvc;
 
     @MockBean
+    private UserAnswerRepository userAnswerRepository;
+
+    @SpyBean
     private StartDateService startDateService;
 
     @Test
@@ -42,9 +46,11 @@ public class StartDateControllerTest {
 
         LocalDate startDate = LocalDate.now().minusDays(10);
 
-        UserAnswers user = UserAnswers.builder().startDate(startDate).build();
+        UserAnswers user = UserAnswers.builder().postcode("AB12 3CD").build();
+        UserAnswers userWithStartDate = UserAnswers.builder().postcode("AB12 3CD").startDate(startDate).build();
 
-        when(startDateService.createStartDate(eq(startDate.toString()))).thenReturn(user);
+        when(userAnswerRepository.findAll()).thenReturn(List.of(user));
+        when(userAnswerRepository.save(userWithStartDate)).thenReturn(userWithStartDate);
 
         mockMvc.perform(post("/startDate").content(startDate.toString()).contentType(MediaType.TEXT_PLAIN)
         ).andExpect(status().isOk());
@@ -55,8 +61,7 @@ public class StartDateControllerTest {
 
         LocalDate startDate = LocalDate.now().plusDays(10);
 
-        doThrow(new StartDateException("start date is in the future")).when(startDateService).createStartDate(startDate.toString());
-        
+
         MvcResult result = mockMvc.perform(post("/startDate").content(startDate.toString()).contentType(MediaType.TEXT_PLAIN)
         ).andExpect(status().isBadRequest()).andReturn();
 

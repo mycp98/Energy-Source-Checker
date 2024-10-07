@@ -43,7 +43,6 @@ public class EndDateServiceTest {
 
         UserAnswers resultingAnswers = endDateService.createEndDate(endDate.toString());
         assert resultingAnswers.equals(expectedAnswers);
-
     }
 
     @Test
@@ -54,6 +53,8 @@ public class EndDateServiceTest {
 
         UserAnswers existingAnswers = UserAnswers.builder().postcode(postcode).startDate(startDate).build();
         when(userAnswerRepository.findAll()).thenReturn(List.of(existingAnswers));
+
+
 
         EndDateException exception = assertThrows(EndDateException.class, () -> {
             endDateService.createEndDate(invalidEndDate.toString());
