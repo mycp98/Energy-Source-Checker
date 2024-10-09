@@ -1,6 +1,5 @@
 package com.opencastsoftware.energysourcechecker.controllers;
 
-import com.opencastsoftware.energysourcechecker.exceptions.StartDateException;
 import com.opencastsoftware.energysourcechecker.models.UserAnswers;
 import com.opencastsoftware.energysourcechecker.repositories.UserAnswerRepository;
 import com.opencastsoftware.energysourcechecker.services.EndDateService;

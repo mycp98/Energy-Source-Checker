@@ -1,11 +1,9 @@
 package com.opencastsoftware.energysourcechecker.clients;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencastsoftware.energysourcechecker.exceptions.CarbonIntensityClientException;
 import com.opencastsoftware.energysourcechecker.responses.CarbonIntensityResponse;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
