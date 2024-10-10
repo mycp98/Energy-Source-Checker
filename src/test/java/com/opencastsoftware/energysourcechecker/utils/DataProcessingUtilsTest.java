@@ -2,7 +2,8 @@ package com.opencastsoftware.energysourcechecker.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencastsoftware.energysourcechecker.responses.CarbonIntensityResponse;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,33 +13,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DataProcessingUtilsTest {
 
 
-    @Test
-    public void shouldReturnRenewable() throws IOException {
+    @ParameterizedTest
+    @CsvSource({"RenewableResponse.json, renewable",
+            "NonRenewableResponse.json, non-renewable",
+            "NuclearResponse.json, nuclear"})
+    public void shouldReturnExpectedResponse(String jsonPath, String expected) throws IOException {
 
-        InputStream json = CarbonIntensityResponse.class.getClassLoader().getResourceAsStream("RenewableResponse.json");
+        InputStream json = CarbonIntensityResponse.class.getClassLoader().getResourceAsStream(jsonPath);
 
-        CarbonIntensityResponse renewableResponse = new ObjectMapper().readValue(json, CarbonIntensityResponse.class);
+        CarbonIntensityResponse response = new ObjectMapper().readValue(json, CarbonIntensityResponse.class);
 
-        assertThat(DataProcessingUtils.getMostEnergyProduced(renewableResponse)).isEqualTo("renewable");
+        assertThat(DataProcessingUtils.getMostEnergyProduced(response)).isEqualTo(expected);
     }
 
-    @Test
-    public void shouldReturnNuclear() throws IOException {
-
-        InputStream json = CarbonIntensityResponse.class.getClassLoader().getResourceAsStream("NuclearResponse.json");
-
-        CarbonIntensityResponse nuclearResponse = new ObjectMapper().readValue(json, CarbonIntensityResponse.class);
-
-        assertThat(DataProcessingUtils.getMostEnergyProduced(nuclearResponse)).isEqualTo("nuclear");
-    }
-
-    @Test
-    public void shouldReturnNonRenewable() throws IOException {
-
-        InputStream json = CarbonIntensityResponse.class.getClassLoader().getResourceAsStream("NonRenewableResponse.json");
-
-        CarbonIntensityResponse nonRenewableResponse = new ObjectMapper().readValue(json, CarbonIntensityResponse.class);
-
-        assertThat(DataProcessingUtils.getMostEnergyProduced(nonRenewableResponse)).isEqualTo("non-renewable");
-    }
 }
