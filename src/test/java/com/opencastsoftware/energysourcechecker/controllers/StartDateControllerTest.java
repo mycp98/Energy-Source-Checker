@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -52,8 +53,9 @@ public class StartDateControllerTest {
         when(userAnswerRepository.findAll()).thenReturn(List.of(user));
         when(userAnswerRepository.save(userWithStartDate)).thenReturn(userWithStartDate);
 
-        mockMvc.perform(post("/startDate").content(startDate.toString()).contentType(MediaType.TEXT_PLAIN)
-        ).andExpect(status().isOk());
+        mockMvc.perform(post("/startDate").content(startDate.toString()).contentType(MediaType.TEXT_PLAIN))
+                .andExpect(status().isOk())
+                .andExpect(content().string("StartDate saved successfully"));
     }
 
     @Test

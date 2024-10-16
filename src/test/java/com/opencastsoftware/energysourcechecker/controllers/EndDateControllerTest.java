@@ -19,6 +19,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -45,8 +46,9 @@ public class EndDateControllerTest {
 
         when(userAnswerRepository.findAll()).thenReturn(List.of(user));
 
-        mockMvc.perform(post("/endDate").content(endDate.toString()).contentType(MediaType.TEXT_PLAIN)
-        ).andExpect(status().isOk());
+        mockMvc.perform(post("/endDate").content(endDate.toString()).contentType(MediaType.TEXT_PLAIN))
+                        .andExpect(status().isOk())
+                        .andExpect(content().string("EndDate saved successfully"));
     }
 
     @Test

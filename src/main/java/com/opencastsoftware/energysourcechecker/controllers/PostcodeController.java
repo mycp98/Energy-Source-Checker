@@ -17,12 +17,12 @@ public class PostcodeController {
     private PostcodeService postcodeService;
 
     @PostMapping("/postcode")
-    public ResponseEntity<Void> postcode(@RequestBody String postcode) {
+    public ResponseEntity<String> postcode(@RequestBody String postcode) {
 
         log.info("Postcode entered is " + postcode);
 
         postcodeService.createPostcode(postcode);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Postcode saved successfully");
     }
 }

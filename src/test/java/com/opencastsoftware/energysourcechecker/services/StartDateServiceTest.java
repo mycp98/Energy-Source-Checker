@@ -40,8 +40,9 @@ public class StartDateServiceTest {
         when(userAnswerRepository.save(any())).thenReturn(expectedAnswers);
 
         UserAnswers resultingAnswers = startDateService.createStartDate(date.toString());
-        assert resultingAnswers.equals(expectedAnswers);
 
+        assertThat(resultingAnswers).isEqualTo(expectedAnswers);
+        assertThat(existingAnswers.getStartDate()).isEqualTo(date);
     }
 
     @Test

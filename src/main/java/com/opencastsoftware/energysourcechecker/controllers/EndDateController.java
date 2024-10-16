@@ -17,10 +17,10 @@ public class EndDateController {
     private EndDateService endDateService;
 
     @PostMapping("/endDate")
-    public ResponseEntity<Void> endDate(@RequestBody String endDate) {
+    public ResponseEntity<String> endDate(@RequestBody String endDate) {
         log.info("endDate is " + endDate);
 
         endDateService.createEndDate(endDate);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("EndDate saved successfully");
     }
 }

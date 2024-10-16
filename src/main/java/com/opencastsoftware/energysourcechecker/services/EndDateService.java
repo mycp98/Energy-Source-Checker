@@ -49,7 +49,7 @@ public class EndDateService {
         }
 
         //TODO unhandled exception
-        userAnswers.setStartDate(date);
+        userAnswers.setEndDate(date);
         return userAnswerRepository.save(userAnswers);
     }
 }

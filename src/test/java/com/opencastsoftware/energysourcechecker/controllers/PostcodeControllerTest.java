@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -43,8 +44,9 @@ class PostcodeControllerTest {
 
         when(userAnswerRepository.save(user)).thenReturn(user);
 
-        mockMvc.perform(post("/postcode").content(postcode).contentType(MediaType.TEXT_PLAIN)
-        ).andExpect(status().isOk());
+        mockMvc.perform(post("/postcode").content(postcode).contentType(MediaType.TEXT_PLAIN))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Postcode saved successfully"));
 
     }
 

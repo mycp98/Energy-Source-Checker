@@ -19,11 +19,11 @@ public class StartDateController {
     private StartDateService startDateService;
 
     @PostMapping("/startDate")
-    public ResponseEntity<Void> startDate(@RequestBody String startDate) {
+    public ResponseEntity<String> startDate(@RequestBody String startDate) {
         log.info("startDate is " + startDate);
 
         startDateService.createStartDate(startDate);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("StartDate saved successfully");
     }
 
 

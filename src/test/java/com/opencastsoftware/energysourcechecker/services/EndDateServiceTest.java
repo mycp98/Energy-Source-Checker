@@ -42,7 +42,10 @@ public class EndDateServiceTest {
         when(userAnswerRepository.save(any())).thenReturn(expectedAnswers);
 
         UserAnswers resultingAnswers = endDateService.createEndDate(endDate.toString());
-        assert resultingAnswers.equals(expectedAnswers);
+
+        assertThat(resultingAnswers).isEqualTo(expectedAnswers);
+        assertThat(existingAnswers.getEndDate()).isEqualTo(endDate);
+
     }
 
     @Test
