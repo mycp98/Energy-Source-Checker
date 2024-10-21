@@ -21,5 +21,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build and test
-        run: mvn clean install -X
+      - name: Build
+        run: mvn clean install
+
+      - name: Test
+        run: mvn test
