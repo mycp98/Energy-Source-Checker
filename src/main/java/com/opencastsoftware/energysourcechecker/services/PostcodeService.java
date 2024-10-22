@@ -3,12 +3,9 @@ package com.opencastsoftware.energysourcechecker.services;
 import com.opencastsoftware.energysourcechecker.exceptions.PostcodeException;
 import com.opencastsoftware.energysourcechecker.models.UserAnswers;
 import com.opencastsoftware.energysourcechecker.repositories.UserAnswerRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 public class PostcodeService {
@@ -16,7 +13,7 @@ public class PostcodeService {
     @Autowired
     private UserAnswerRepository userAnswerRepository;
 
-    String regex = "^[a-zA-Z]{1,2}\\d[a-zA-Z\\d]?\\s*\\d[a-zA-Z]{2}$";
+    String regex = "^[a-zA-Z]{1,2}\\d[a-zA-Z\\d]?\\s\\d[a-zA-Z]{2}$";
 
     boolean validatePostcode(String postcode) {
         return postcode.matches(regex);
@@ -28,7 +25,7 @@ public class PostcodeService {
             throw new PostcodeException("invalid postcode");
         }
 
-        UserAnswers userAnswers = UserAnswers.builder().postcode(postcode).build();
+        UserAnswers userAnswers = UserAnswers.builder().postcode(postcode.split(" ")[0]).build();
         return userAnswerRepository.save(userAnswers);
     }
 

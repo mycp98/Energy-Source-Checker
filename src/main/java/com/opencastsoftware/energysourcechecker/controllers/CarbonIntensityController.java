@@ -15,15 +15,10 @@ public class CarbonIntensityController {
     @Autowired
     private CarbonIntensityService carbonIntensityService;
 
+    @GetMapping("/carbonIntensity")
+    public ResponseEntity<String> getRegionalIntensity() {
 
-
-    @GetMapping("/regional/intensity/{startDate}/{endDate}/postcode/{postcode}")
-    public ResponseEntity<String> getRegionalIntensity(
-            @PathVariable String startDate,
-            @PathVariable String endDate,
-            @PathVariable String postcode) {
-
-            String response = carbonIntensityService.fetchAndProcessRegionalIntensityData(startDate, endDate, postcode);
+            String response = carbonIntensityService.fetchAndProcessRegionalIntensityData();
             return ResponseEntity.ok(response);
     }
 }

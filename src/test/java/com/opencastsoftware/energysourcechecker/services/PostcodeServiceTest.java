@@ -26,7 +26,7 @@ public class PostcodeServiceTest {
     @Test
     public void testCreateUser() {
 
-        UserAnswers user = UserAnswers.builder().postcode("AB12 9DE").build();
+        UserAnswers user = UserAnswers.builder().postcode("AB12").build();
 
         when(userAnswerRepository.save(user)).thenReturn(user);
 

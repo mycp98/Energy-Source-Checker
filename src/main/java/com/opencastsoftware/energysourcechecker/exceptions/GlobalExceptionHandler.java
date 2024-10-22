@@ -20,6 +20,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleStartDateException(EndDateException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(UserAnswersException.class)
+    public ResponseEntity<String> handleUserAnswersException(UserAnswersException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
     @ExceptionHandler(CarbonIntensityClientException.class)
     public ResponseEntity<String> handCarbonIntensityClientException(CarbonIntensityClientException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
