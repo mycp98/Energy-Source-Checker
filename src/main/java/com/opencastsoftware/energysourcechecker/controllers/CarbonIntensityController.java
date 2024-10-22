@@ -1,10 +1,8 @@
 package com.opencastsoftware.energysourcechecker.controllers;
 
-import com.opencastsoftware.energysourcechecker.responses.CarbonIntensityResponse;
 import com.opencastsoftware.energysourcechecker.services.CarbonIntensityService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

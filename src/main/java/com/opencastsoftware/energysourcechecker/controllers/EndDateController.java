@@ -1,7 +1,6 @@
 package com.opencastsoftware.energysourcechecker.controllers;
 
 import com.opencastsoftware.energysourcechecker.services.EndDateService;
-import com.opencastsoftware.energysourcechecker.services.StartDateService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

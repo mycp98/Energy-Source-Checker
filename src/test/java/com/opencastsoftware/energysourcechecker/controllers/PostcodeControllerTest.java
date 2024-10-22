@@ -1,7 +1,6 @@
 package com.opencastsoftware.energysourcechecker.controllers;
 
 
-import com.opencastsoftware.energysourcechecker.exceptions.PostcodeException;
 import com.opencastsoftware.energysourcechecker.models.UserAnswers;
 import com.opencastsoftware.energysourcechecker.repositories.UserAnswerRepository;
 import com.opencastsoftware.energysourcechecker.services.PostcodeService;
@@ -16,7 +15,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

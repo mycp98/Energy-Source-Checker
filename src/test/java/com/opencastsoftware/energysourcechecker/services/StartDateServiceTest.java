@@ -1,10 +1,8 @@
 package com.opencastsoftware.energysourcechecker.services;
 
-import com.opencastsoftware.energysourcechecker.exceptions.PostcodeException;
 import com.opencastsoftware.energysourcechecker.exceptions.StartDateException;
 import com.opencastsoftware.energysourcechecker.models.UserAnswers;
 import com.opencastsoftware.energysourcechecker.repositories.UserAnswerRepository;
-import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
