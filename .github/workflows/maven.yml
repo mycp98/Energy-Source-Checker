@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the code
-        uses: actions/checkout@v2
-
       - name: Pull Carbon Intensity Stub
         uses: actions/checkout@v2
         with:
           repository: mycp98/Energy-Source-Checker-Stubs
+
+      - name: Check out the code
+        uses: actions/checkout@v2
 
       - name: Set up JDK 17
         uses: actions/setup-java@v2
