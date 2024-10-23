@@ -62,42 +62,45 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M7</version>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
 				</configuration>
 			</plugin>
+
 			<plugin>
-				<groupId>org.pitest</groupId>
-				<artifactId>pitest-maven</artifactId>
-				<version>1.17.0</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.0.0-M7</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<targetClasses>com.opencastsoftware.energysourcechecker.*</targetClasses>
-					<targetTests>com.opencastsoftware.energysourcechecker.*</targetTests>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.pitest</groupId>
-						<artifactId>pitest-junit5-plugin</artifactId>
-						<version>1.2.1</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
+
+		<testSourceDirectory>src/it/java</testSourceDirectory>
+
 		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-			</testResource>
 			<testResource>
 				<directory>src/it/resources</directory>
 			</testResource>
 		</testResources>
 	</build>
+
+
 
 </project>

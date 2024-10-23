@@ -34,7 +34,7 @@ jobs:
         run: mvn clean install
 
       - name: Run Integration Tests
-        run: mvn verify -DskipTests=true -Dit.test="**/*IT.java"
+        run: mvn verify
 
 
 
