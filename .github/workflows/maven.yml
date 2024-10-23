@@ -14,6 +14,11 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
 
+      - name: Pull Carbon Intensity Stub
+        uses: actions/@v2
+        with:
+          repository: https://github.com/mycp98/Energy-Source-Checker-Stubs
+
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
@@ -23,3 +28,5 @@ jobs:
 
       - name: Build and Test
         run: mvn clean install
+
+
