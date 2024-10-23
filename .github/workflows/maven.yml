@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Pull Carbon Intensity Stub
-        uses: actions/@v2
+        uses: actions/checkout@v2
         with:
           repository: https://github.com/mycp98/Energy-Source-Checker-Stubs
 
