@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.opencastsoftware</groupId>
 	<artifactId>energysourcechecker</artifactId>
@@ -58,7 +58,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -71,7 +70,6 @@
 					</includes>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
@@ -91,9 +89,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
 		<testSourceDirectory>src/it/java</testSourceDirectory>
-
 		<testResources>
 			<testResource>
 				<directory>src/it/resources</directory>
