@@ -16,6 +16,10 @@ jobs:
         with:
           repository: mycp98/Energy-Source-Checker-Stubs
 
+      - name: Build and Run stub
+        run: docker build -t stubs . && docker run -d -p 8081:8080 stubs &
+
+
       - name: Check out the code
         uses: actions/checkout@v2
 
